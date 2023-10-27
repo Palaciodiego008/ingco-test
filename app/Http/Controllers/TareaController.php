@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 
 class TareaController extends Controller
 {
+
     public function index()
     {
         $tareas = Tarea::all();
@@ -52,8 +53,12 @@ class TareaController extends Controller
     public function edit($id)
     {
         $tarea = Tarea::find($id);
+
+        $this->authorize('update', $tarea);
+
         $users = User::all();
         $etiquetas = Etiqueta::all();
+
         return view('tareas.edit', compact('tarea', 'users', 'etiquetas'));
     }
 
@@ -64,10 +69,12 @@ class TareaController extends Controller
             'descripcion' => 'required',
             'fecha_vencimiento' => 'required|date',
             'user_id' => 'required',
-            'etiquetas' => 'array', // Asegúrate de que el campo de etiquetas sea un arreglo
+            'etiquetas' => 'array',
         ]);
 
         $tarea = Tarea::find($id);
+
+        $this->authorize('update', $tarea);
 
         // Actualiza la tarea con los datos del formulario
         $tarea->update($request->except('etiquetas'));
@@ -82,24 +89,30 @@ class TareaController extends Controller
     }
 
 
+
     public function destroy($id)
     {
-        Tarea::find($id)->delete();
+        $tarea = Tarea::find($id);
+
+        $this->authorize('delete', $tarea);
+
+        $tarea->delete();
 
         return redirect()->route('tareas.index')->with('success', 'Tarea eliminada exitosamente.');
     }
 
+
     public function taskByUser($id)
     {
 
-        $usuario = User::find($id);
+        $user = User::find($id);
 
-        if (!$usuario) {
+        if (!$user) {
             return redirect()->route('tareas.index')->with('error', 'Usuario no encontrado');
         }
 
 
-        $tareas = $usuario->tareas;
+        $tareas = $user->tareas;
 
         return view('tareas.tareas_usuario', compact('user', 'tareas'));
     }

@@ -12,10 +12,11 @@ class CreateEtiquetaTareaTable extends Migration
             $table->unsignedBigInteger('etiqueta_id');
             $table->unsignedBigInteger('tarea_id');
             $table->foreign('etiqueta_id')->references('id')->on('etiquetas');
-            $table->foreign('tarea_id')->references('id')->on('tareas');
+            $table->foreign('tarea_id')->references('id')->on('tareas')->onDelete('cascade');
             $table->timestamps();
         });
     }
+
 
     public function down()
     {

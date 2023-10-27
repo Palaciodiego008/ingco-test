@@ -25,12 +25,17 @@
                 <td>{{ $tarea->created_at->format('Y-m-d H:i:s') }}</td>
                 <td>{{ $tarea->fecha_vencimiento }}</td>
                 <td>
-                    <a href="{{ route('tareas.edit', $tarea->id) }}" class="btn btn-primary btn-sm">Editar</a>
-                    <form action="{{ route('tareas.destroy', $tarea->id) }}" method="POST" style="display: inline;">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('¿Estás seguro de eliminar esta tarea?')">Eliminar</button>
-                    </form>
+                    @can('update', $tarea)
+                        <a href="{{ route('tareas.edit', $tarea->id) }}" class="btn btn-primary btn-sm">Editar</a>
+                    @endcan
+
+                    @can('delete', $tarea)
+                        <form action="{{ route('tareas.destroy', $tarea->id) }}" method="POST" style="display: inline;">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('¿Estás seguro de eliminar esta tarea?')">Eliminar</button>
+                        </form>
+                    @endcan
                 </td>
             </tr>
             @endforeach

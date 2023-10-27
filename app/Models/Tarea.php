@@ -25,4 +25,12 @@ class Tarea extends Model
         return $this->belongsToMany(Etiqueta::class, 'etiqueta_tarea', 'tarea_id', 'etiqueta_id');
     }
 
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::deleting(function ($tarea) {
+            $tarea->etiquetas()->detach();
+        });
+    }
 }
