@@ -13,6 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
+Route::resource('tareas', 'TareaController');
+
 Route::get('/', function () {
     return view('welcome');
 });
