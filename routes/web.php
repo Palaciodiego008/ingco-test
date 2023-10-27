@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::resource('tareas', TareaController::class);
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -23,5 +23,6 @@ Route::get('/', function () {
 
 Auth::routes();
 
+Route::resource('tareas', TareaController::class);
 Route::get('/home', [TareaController::class, 'index'])->name('home');
-
+Route::get('/tareas/user/{id}', [TareaController::class, 'taskByUser'])->name('tareas.usuario');

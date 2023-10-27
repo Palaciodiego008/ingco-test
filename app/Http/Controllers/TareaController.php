@@ -21,7 +21,7 @@ class TareaController extends Controller
         $users = User::all();
         $etiquetas = Etiqueta::all();
 
-        return view('tareas.create', compact('users','etiquetas'));
+        return view('tareas.create', compact('users', 'etiquetas'));
     }
 
     public function store(Request $request)
@@ -54,7 +54,7 @@ class TareaController extends Controller
         $tarea = Tarea::find($id);
         $users = User::all();
         $etiquetas = Etiqueta::all();
-        return view('tareas.edit', compact('tarea', 'users','etiquetas'));
+        return view('tareas.edit', compact('tarea', 'users', 'etiquetas'));
     }
 
     public function update(Request $request, $id)
@@ -87,5 +87,20 @@ class TareaController extends Controller
         Tarea::find($id)->delete();
 
         return redirect()->route('tareas.index')->with('success', 'Tarea eliminada exitosamente.');
+    }
+
+    public function taskByUser($id)
+    {
+
+        $usuario = User::find($id);
+
+        if (!$usuario) {
+            return redirect()->route('tareas.index')->with('error', 'Usuario no encontrado');
+        }
+
+
+        $tareas = $usuario->tareas;
+
+        return view('tareas.tareas_usuario', compact('user', 'tareas'));
     }
 }
