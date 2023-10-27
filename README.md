@@ -51,5 +51,3 @@ La API utiliza autenticación con tokens de acceso generados a través de la rut
 #### Usuarios
 
 - **POST `/sactum/token`:** Obtiene un token de autenticación proporcionando tu dirección de correo electrónico y contraseña.
-
-Para obtener más detalles y ejemplos de solicitudes y respuestas, consulta la documentación generada de la API.
