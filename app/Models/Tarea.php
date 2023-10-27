@@ -17,10 +17,12 @@ class Tarea extends Model
     ];
 
     public function usuario () {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
 
-    public function etiquetas() {
-        return $this->belongsToMany(Etiqueta::class);
+    public function etiquetas()
+    {
+        return $this->belongsToMany(Etiqueta::class, 'etiqueta_tarea', 'tarea_id', 'etiqueta_id');
     }
+
 }

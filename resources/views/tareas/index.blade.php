@@ -22,7 +22,7 @@
                 <td>{{ $tarea->id }}</td>
                 <td>{{ $tarea->nombre }}</td>
                 <td>{{ $tarea->descripcion }}</td>
-                <td>{{ $tarea->fecha_creacion }}</td>
+                <td>{{ $tarea->created_at->format('Y-m-d H:i:s') }}</td>
                 <td>{{ $tarea->fecha_vencimiento }}</td>
                 <td>
                     <a href="{{ route('tareas.edit', $tarea->id) }}" class="btn btn-primary btn-sm">Editar</a>
