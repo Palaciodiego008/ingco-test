@@ -14,6 +14,7 @@ class Tarea extends Model
         'descripcion',
         'fecha_creacion',
         'fecha_vencimiento',
+        'user_id',
     ];
 
     public function usuario () {

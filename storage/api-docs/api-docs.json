@@ -1,0 +1,11 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Tareas API",
+        "description": "API para el manejo de tareas",
+        "version": "1.0"
+    },
+    "paths": {
+        "/api": {}
+    }
+}
