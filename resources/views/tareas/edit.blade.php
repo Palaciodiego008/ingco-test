@@ -4,7 +4,7 @@
 <div class="container">
     <h2>Editar Tarea</h2>
 
-    <form action="{{ route('tareas.update', $tarea->id) }}" method="PUT">
+    <form action="{{ route('tareas.update', $tarea->id) }}" method="POST">
         @csrf
         @method('PUT')
 

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\TareaController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::resource('tareas', 'TareaController');
+Route::resource('tareas', TareaController::class);
 
 Route::get('/', function () {
     return view('welcome');
@@ -22,4 +23,5 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [TareaController::class, 'index'])->name('home');
+

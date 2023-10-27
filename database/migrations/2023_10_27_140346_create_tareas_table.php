@@ -12,8 +12,9 @@ class CreateTareasTable extends Migration
             $table->id();
             $table->string('nombre');
             $table->text('descripcion');
-            $table->timestamp('fecha_creacion')->useCurrent();
             $table->date('fecha_vencimiento');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
     }
